@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FaTwitter } from 'react-icons/fa';
+import './App.css'; // Import the CSS
 
 const articles = [
   {
@@ -9,9 +11,8 @@ const articles = [
   {
     title: "Recreating the GitHub Contribution Graph with CSS Grid Layout",
     date: "Sep 15, 2018",
-    description: "",
+    description: "Recreating the gridgit hdhhdhshahaha",
   },
-  // Add more articles...
 ];
 
 const highlightKeyword = (text, keyword) => {
@@ -33,31 +34,56 @@ export default function App() {
   );
 
   return (
-    <div style={{ maxWidth: '700px', margin: 'auto', padding: '1rem' }}>
-      <h2>Search</h2>
-      <input
-        type="text"
-        placeholder="Search articles..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        style={{
-          width: '100%',
-          padding: '0.5rem',
-          fontSize: '1rem',
-          marginBottom: '1rem',
-        }}
-      />
-      <p><strong>{filteredArticles.length} posts</strong> were found.</p>
+    <div className="container">
+      
+      {/* LEFT: Article List */}
+      <div className="left">
+        <h2>Search</h2>
+        <input
+          type="text"
+          placeholder="Search articles..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            fontSize: '1rem',
+            marginBottom: '1rem',
+          }}
+        />
+        <p><strong>{filteredArticles.length} posts</strong> were found.</p>
 
-      {filteredArticles.map((article, index) => (
-        <div key={index} style={{ marginBottom: '1.5rem' }}>
-          <h3>
-            {highlightKeyword(article.title, query)}
-          </h3>
-          <small>{article.date}</small>
-          <p>{highlightKeyword(article.description, query)}</p>
+        {filteredArticles.map((article, index) => (
+          <div key={index} style={{ marginBottom: '1.5rem' }}>
+            <h3>{highlightKeyword(article.title, query)}</h3>
+            <small>{article.date}</small>
+            <p>{highlightKeyword(article.description, query)}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* RIGHT: Author Info */}
+      <div className="right">
+        <div className="author-info">
+          <p>
+          <strong>BitsofCode . </strong>
+            Articles on Frontend
+            Development. All articles are written by
+            <u>Ire Aderinokun</u>, Frontend Developer and
+            User Interface Designer.
+          </p>
         </div>
-      ))}
+
+        <div className="bottom-row">
+          <div className="follow-box">
+            <FaTwitter color="white" />
+            <span>Follow @ireaderinokun</span>
+          </div>
+          <div className="followers-box">
+            19.1K followers
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
